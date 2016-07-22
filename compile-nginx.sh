@@ -11,7 +11,7 @@ GIT=$(which git)
 if [ -e "$YUM_CMD" ]; then
     yum -y install gcc-c++ pcre-devel zlib-devel make unzip openssl-devel
 elif [ -e "$APT_GET_CMD" ]; then
-    apt-get -y install build-essential zlib1g-dev libpcre3 libpcre3-dev unzip
+    apt-get -y install build-essential zlib1g-dev libpcre3 libpcre3-dev unzip libssl-dev libgeoip-dev libgeoip1
 else
     echo "error cannot find package manager for this linux distribution"
     exit 1;
