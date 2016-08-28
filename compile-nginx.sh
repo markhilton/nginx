@@ -54,6 +54,11 @@ cp ./configure ${CURDIR}/nginx/
 cd ${CURDIR}/nginx
 cp auto/configure ./
 
+cd ${CURDIR}/ngx_pagespeed
+wget https://dl.google.com/dl/page-speed/psol/1.11.33.3.tar.gz
+tar -xzvf 1.11.33.3.tar.gz
+cd ${CURDIR}/nginx
+
 ./configure \
 --with-http_ssl_module \
 --with-http_geoip_module \
@@ -63,5 +68,12 @@ cp auto/configure ./
 --add-module=${CURDIR}/headers-more-nginx-module \
 --add-module=${CURDIR}/ngx_http_substitutions_filter_module
 
+make
+make install
 
+cd ${CURDIR}
+cp nginx.debian /etc/init.d/nginx
+chmod +x /etc/init.d/nginx
+
+ln -s /usr/local/nginx/conf /etc/nginx
 
